@@ -1,11 +1,51 @@
-import React, { useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import React, { useEffect, useState } from 'react'
 import OTPInput from 'react-otp-input'
+import { checkOtp } from '../../services/authService'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import Loading from '../../ui/Loading'
+import {HiArrowRight} from 'react-icons/hi'
+import { FaArrowRotateLeft } from "react-icons/fa6"
 
-function CheckOTPForm() {
+const RESENDOTP = 90
+function CheckOTPForm({phoneNumber, onBack, onResendOtp}) {
     const [otp, setOtp] = useState("")
+    const [time, setTime] = useState(RESENDOTP)
+    const navigate = useNavigate()
+
+    const {isPending, mutateAsync} = useMutation({
+        mutationFn: checkOtp
+    })
+
+    const checkOtpHandler = async (e)=>{
+        e.preventDefault()
+        try {
+            const {user, message} = await mutateAsync({phoneNumber, otp})
+            toast.success(message)
+            console.log(user);
+            if(!user.isActive) return navigate("/complete-profile")
+        } catch (error) {
+            toast.error(error?.response?.data?.message)
+        }
+    }
+
+    useEffect(()=>{
+        const timer = time > 0 && setInterval(() => {
+            setTime(t => t - 1)
+        }, 1000);
+        return ()=> {
+            if(timer) clearInterval(timer)
+        }
+    }, [time])
+    
   return (
     <div>
-        <form className='space-y-10'>
+        <button onClick={onBack} className='mb-8 bg-blue-200 p-2 rounded-full hover:bg-blue-300 transition-all duration-500'>
+            <HiArrowRight className='w-4 h-4'/>
+        </button>
+
+        <form className='space-y-10 mb-8' onSubmit={checkOtpHandler}>
             <p className='font-bold text-secondary-800'>کد تایید را وارد کنید</p>
             <OTPInput
                 value={otp}
@@ -21,8 +61,19 @@ function CheckOTPForm() {
                     borderRadius: "0.5rem"
                 }}
             />
-            <button className='btn btn--primary w-full'>تایید</button>
+            {
+                isPending ? <Loading/> :
+                    <button className='btn btn--primary w-full'>تایید</button>
+            }
         </form>
+        { time > 0 ? (
+            <p className='flex justify-center'> {time} ثانیه تا ارسال مجدد کد </p>
+            ) : (
+            <button onClick={onResendOtp} className='flex gap-x-2 items-center mx-auto'>
+                <span>ارسال مجدد کد</span>
+                <FaArrowRotateLeft/>
+            </button>
+        )}
     </div>
   )
 }

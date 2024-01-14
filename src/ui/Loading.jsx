@@ -12,7 +12,7 @@ function Loading({height= "75", width= "40"}) {
             visible={true}
             wrapperStyle={{
                 display: "flex",
-                justify: "center"
+                justifyContent: "center"
             }}
         />
     </div>
