@@ -6,7 +6,7 @@ function Auth() {
   return (
     <div className='w-full sm:max-w-sm pt-10 container mx-auto'>
         <SendOTPForm/>
-        <CheckOTPForm/>
+        {/* <CheckOTPForm/> */}
     </div>
   )
 }
