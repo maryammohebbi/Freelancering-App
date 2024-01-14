@@ -7,9 +7,10 @@ import { useNavigate } from 'react-router-dom'
 import Loading from '../../ui/Loading'
 import {HiArrowRight} from 'react-icons/hi'
 import { FaArrowRotateLeft } from "react-icons/fa6"
+import { FiEdit } from "react-icons/fi"
 
 const RESENDOTP = 90
-function CheckOTPForm({phoneNumber, onBack, onResendOtp}) {
+function CheckOTPForm({phoneNumber, onBack, onResendOtp, otpResponse}) {
     const [otp, setOtp] = useState("")
     const [time, setTime] = useState(RESENDOTP)
     const navigate = useNavigate()
@@ -41,10 +42,23 @@ function CheckOTPForm({phoneNumber, onBack, onResendOtp}) {
     
   return (
     <div>
-        <button onClick={onBack} className='mb-8 bg-blue-200 p-2 rounded-full hover:bg-blue-300 transition-all duration-500'>
+        <button 
+            onClick={onBack} 
+            className='mb-8 bg-blue-200 p-2 rounded-full hover:bg-blue-300 transition-all duration-500'
+        >
             <HiArrowRight className='w-4 h-4'/>
         </button>
-
+        { otpResponse &&
+            <div className='flex gap-x-1 items-center my-4'>
+                <p>{otpResponse?.message}</p> 
+                <button 
+                    onClick={onBack} 
+                    className='flex items-center underline text-sm gap-x-1 text-secondary-800'>
+                        ویرایش شماره <FiEdit/>
+                </button>
+            </div>
+        }
+            
         <form className='space-y-10 mb-8' onSubmit={checkOtpHandler}>
             <p className='font-bold text-secondary-800'>کد تایید را وارد کنید</p>
             <OTPInput
