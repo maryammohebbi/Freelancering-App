@@ -5,7 +5,10 @@ import { HiX } from 'react-icons/hi'
 function MobileSidebar({menuOpen, setMenuOpen}) {
    
   return (
-    <div className={`${menuOpen ? "flex" : "hidden"} bg-secondary-0 absolute w-[15rem] h-screen top-0 p-6 flex-col border-l border-gray-300 rounded-tl-3xl`}>
+    <div className={`${ menuOpen ? 'translate-x-0' : 'translate-x-full' } 
+        bg-secondary-0 absolute w-[15rem] h-screen top-0 p-6 flex-col border-l border-gray-300 rounded-tl-3xl 
+        transition-transform duration-300 transform`}
+    >
         <div className='flex justify-end'>
             <button
                 onClick={()=> setMenuOpen(false)} 
