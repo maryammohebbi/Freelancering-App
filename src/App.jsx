@@ -15,7 +15,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster/>
-      <div className="container sm:max-w-screen-xl">
+      <div className="">
         <Routes>
           <Route path="/auth" element={<Auth/>}/>
           <Route path="/complete-profile" element={<CompleteProfile/>}/>
