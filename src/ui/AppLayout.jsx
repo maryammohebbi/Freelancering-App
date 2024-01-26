@@ -11,7 +11,7 @@ function AppLayout() {
         <Header setMenuOpen={setMenuOpen}/>
         <Sidebar/>
         <div className='bg-secondary-100 overflow-y-auto p-8 col-span-2 md:col-span-1'>
-            <div className="mx-auto max-w-screen-lg flex flex-col gap-y-12 bg-yellow-100">
+            <div className="mx-auto max-w-screen-lg flex flex-col gap-y-12">
                 <Outlet/>
             </div>
         </div>
