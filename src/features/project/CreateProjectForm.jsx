@@ -5,16 +5,31 @@ import { TagsInput } from 'react-tag-input-component'
 import DatePickerField from '../../ui/DatePickerField'
 import { useForm } from 'react-hook-form'
 import useCategories from '../../hooks/useCategories'
+import useCreateProject from './useCreateProject'
 
-function CreateProjectForm() {
-    const {register, formState: {errors}, handleSubmit} = useForm()
-    const {categories} = useCategories()
-    const onSubmit = (data)=> {
-        console.log(data);
-    }
-
+function CreateProjectForm({onClose}) {
     const [tags, setTags] = useState([])
     const [date, setDate] = useState(new Date())
+    const {register, formState: {errors}, handleSubmit, reset} = useForm()
+    const {categories} = useCategories()
+    const {createProject, isCreating} = useCreateProject()
+
+    const onSubmit = (data)=> {
+        // console.log(data);
+        const newProject = {
+            ...data,
+            tags,
+            deadline: new Date(date).toISOString()
+        }
+        createProject(newProject, {
+            onSuccess: ()=> {
+                onClose()
+                reset()
+            }
+        })
+    }
+
+    
     
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-2'>
