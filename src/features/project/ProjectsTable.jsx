@@ -11,7 +11,7 @@ function ProjectsTable() {
     if(isLoading) return <Loading/>
     if(!projects.length) return <Empty resourceName="پروژه"/>
 
-console.log(projects);
+// console.log(projects);
   return (
     <Table>
         <Table.Header>

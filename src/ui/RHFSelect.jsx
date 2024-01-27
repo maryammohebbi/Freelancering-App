@@ -1,12 +1,12 @@
 import React from 'react'
 
-function RHFSelect({label, name, options, required}) {
+function RHFSelect({label, name, options, required, register}) {
   return (
     <div>
         <label htmlFor={name} className='mb-2 block text-secondary-700'>
             {label} {required && <span className='text-error'>*</span>}
         </label>
-        <select id={name} className='textField__input'>
+        <select {...register(name)} id={name} className='textField__input'>
             {options.map((option)=> (
                 <option key={option.value} value={option.value}>
                     {option.label}
