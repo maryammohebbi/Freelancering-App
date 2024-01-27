@@ -6,13 +6,38 @@ import DatePickerField from '../../ui/DatePickerField'
 import { useForm } from 'react-hook-form'
 import useCategories from '../../hooks/useCategories'
 import useCreateProject from './useCreateProject'
+import useEditProject from './useEditProject'
+import Loading from '../../ui/Loading'
 
-function CreateProjectForm({onClose}) {
-    const [tags, setTags] = useState([])
-    const [date, setDate] = useState(new Date())
-    const {register, formState: {errors}, handleSubmit, reset} = useForm()
+function CreateProjectForm({onClose, projectToEdit = {}}) {
+    const {_id: editId} = projectToEdit
+    const isEditSession = Boolean(editId)
+
+    const {title, description, budget, category, deadline, tags: prevTags} = projectToEdit
+
+    let editValues = {}
+
+    if(isEditSession){
+        editValues = { 
+            title, 
+            description,
+            budget, 
+            category: category._id
+        }
+    }
+
+    const {
+        register, 
+        formState: {errors}, 
+        handleSubmit, 
+        reset 
+    } = useForm({ defaultValues: editValues })
+
+    const [tags, setTags] = useState(prevTags || [])
+    const [date, setDate] = useState(new Date(deadline || ""))
     const {categories} = useCategories()
     const {createProject, isCreating} = useCreateProject()
+    const {editProject, isUpdating} = useEditProject()
 
     const onSubmit = (data)=> {
         // console.log(data);
@@ -21,12 +46,21 @@ function CreateProjectForm({onClose}) {
             tags,
             deadline: new Date(date).toISOString()
         }
-        createProject(newProject, {
-            onSuccess: ()=> {
-                onClose()
-                reset()
-            }
-        })
+        if(isEditSession){
+            editProject({id: editId, newProject}, {
+                onSuccess: ()=> {
+                    onClose(),
+                    reset()
+                }
+            })
+        }else {
+            createProject(newProject, {
+                onSuccess: ()=> {
+                    onClose()
+                    reset()
+                }
+            })
+        }
     }
 
     
@@ -88,7 +122,7 @@ function CreateProjectForm({onClose}) {
         <DatePickerField date={date} setDate={setDate} label="ددلاین"/>
 
         <div className='!mt-4'>
-            <button className='btn btn--primary w-full'>تایید</button>
+            { isCreating ? <Loading/> : <button className='btn btn--primary w-full'>تایید</button> }
         </div>
     </form>
   )

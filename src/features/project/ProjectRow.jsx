@@ -7,6 +7,7 @@ import { CiEdit, CiTrash } from "react-icons/ci"
 import Modal from '../../ui/Modal'
 import ConfirmDelete from '../../ui/ConfirmDelete'
 import useRemoveProject from './useRemoveProject'
+import CreateProjectForm from './CreateProjectForm'
 
 function ProjectRow({index, project}) {
     const [isDeleteOpen, setIsDeleteOpen] = useState(false)
@@ -39,7 +40,10 @@ function ProjectRow({index, project}) {
                         <CiEdit className='size-6 text-primary-900'/>
                     </button>
                     <Modal title={`ویرایش ${project.title}`} onClose={()=>setIsEditOpen(false)} open={isEditOpen}>
-
+                        <CreateProjectForm 
+                            onClose={()=> setIsEditOpen(false)} 
+                            projectToEdit={project}
+                        />
                     </Modal>
                 </>
 
