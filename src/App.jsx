@@ -9,6 +9,7 @@ import AppLayout from "./ui/AppLayout"
 import Owner from "./pages/Owner"
 import OwnerDashboard from "./pages/OwnerDashboard"
 import Projects from "./pages/Projects"
+import SingleProject from "./pages/SingleProject"
 
 const queryClient = new QueryClient()
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/owner" element={<Owner/>}/>
             <Route path="dashboard" element={<OwnerDashboard/>}/>
             <Route path="projects" element={<Projects/>}/>
+            <Route path="projects/:id" element={<SingleProject/>} />
           </Route>
           <Route path="/" element={<Home/>} />
           <Route path="*" element={<NotFound/>}/>
