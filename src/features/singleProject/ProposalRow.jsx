@@ -3,6 +3,7 @@ import Table from '../../ui/Table'
 import truncateText from '../../utils/truncateText'
 import Modal from '../../ui/Modal'
 import ChangeProposalStatus from './ChangeProposalStatus'
+import { FaToggleOff } from "react-icons/fa6"
 
 const statusStyle = [
     {
@@ -42,7 +43,13 @@ function ProposalRow({proposal, index}) {
             >
                 <ChangeProposalStatus proposalId={proposal._id} onClose={()=> setOpen(false)}/>
             </Modal>
-            <button onClick={()=> setOpen(true)}>تغییر  وضعیت</button>
+            <button 
+                onClick={()=> setOpen(true)}
+                className='flex gap-x-2 items-center bg-secondary-100 rounded-lg p-1'
+                >
+                <span className='text-secondary-800'>تغییر وضعیت</span>
+                <FaToggleOff className='text-primary-900 size-6'/>
+            </button>
         </td>
 
     </Table.Row>
