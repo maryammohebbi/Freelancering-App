@@ -6,11 +6,14 @@ import RadioInput from '../../ui/RadioInput'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import Loading from '../../ui/Loading'
+import { useForm } from 'react-hook-form'
+import RadioInputGroup from '../../ui/RadioInputGroup'
 
 function CompleteProfile() {
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [role, setRole] = useState("")
+    // const [name, setName] = useState("")
+    // const [email, setEmail] = useState("")
+    // const [role, setRole] = useState("")
+    const {register, formState: {errors}, watch} = useForm()
     const navigate = useNavigate()
 
     const {isPending, mutateAsync} = useMutation({
@@ -43,33 +46,52 @@ function CompleteProfile() {
                     <TextField 
                         label= "نام و نام خانوادگی"
                         name= "name"
-                        value= {name}
-                        onChange={e=> setName(e.target.value)}
+                        // value= {name}
+                        // onChange={e=> setName(e.target.value)}
+                        register={register}
+                        validationSchema={{
+                            required: "نام و نام خانوادگی ضروری است",
+                            minLength: {
+                                value: 5,
+                                message: "نام و نام خانوادگی نباید از 5 کاراکتر کمتر باشد"
+                            }
+                        }}
+                        errors={errors}
                     />
                     <TextField 
                         label= "ایمیل"
                         name= "email"
-                        value= {email}
-                        onChange={e=> setEmail(e.target.value)}
+                        // value= {email}
+                        // onChange={e=> setEmail(e.target.value)}
+                        register={register}
+                        validationSchema={{
+                            required: "ایمیل ضروری است",
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "ایمیل نامعتبر",
+                            },
+                        }}
+                        errors={errors}
                     />
-                    <div className='flex justify-center gap-x-8'>
-                        <RadioInput
-                            label= "کارفرما"
-                            value="OWNER"
-                            name= "role"
-                            id= "OWNER"
-                            onChange={e=> setRole(e.target.value)}
-                            cheched={role === "OWNER"}
-                        />
-                        <RadioInput
-                            label= "فریلنسر"
-                            value="FREELANCER"
-                            role= "role"
-                            id= "FREELANCER"
-                            onChange={e=> setRole(e.target.value)}
-                            cheched={role === "FREELANCER"}
-                        />
-                    </div>
+                    <RadioInputGroup
+                        errors={errors}
+                        register={register}
+                        watch={watch}
+                        configs={{
+                            name: "role",
+                            validationSchema: {required: "انتخاب نقش ضروری است"},
+                            options: [
+                                {
+                                    value: "OWNER",
+                                    label: "کارفرما",
+                                },
+                                {
+                                    value: "FREELANCER",
+                                    label: "فریلنسر"
+                                }
+                            ]
+                        }}
+                    />
                     { isPending ? ( <Loading/>
                         ) : (
                         <button className='btn btn--primary w-full'>تکمیل پروفایل</button>
