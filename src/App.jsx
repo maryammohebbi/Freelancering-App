@@ -5,12 +5,12 @@ import { Toaster } from "react-hot-toast"
 import CompleteProfile from "./features/authentication/CompleteProfile"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
-import AppLayout from "./ui/AppLayout"
 import Owner from "./pages/Owner"
 import OwnerDashboard from "./pages/OwnerDashboard"
 import Projects from "./pages/Projects"
 import SingleProject from "./pages/SingleProject"
 import { DarkModeProvider } from "./context/DarkModeContext"
+import OwnerLayout from "./features/owner/OwnerLayout"
 
 const queryClient = new QueryClient()
 
@@ -24,7 +24,7 @@ function App() {
           <Routes>
             <Route path="/auth" element={<Auth/>}/>
             <Route path="/complete-profile" element={<CompleteProfile/>}/>
-            <Route path="/owner" element={<AppLayout/>}>
+            <Route path="/owner" element={<OwnerLayout/>}>
               <Route index element={<Navigate to="dashboard" replace/>}/>
               <Route path="/owner" element={<Owner/>}/>
               <Route path="dashboard" element={<OwnerDashboard/>}/>
