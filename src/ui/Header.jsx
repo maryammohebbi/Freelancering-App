@@ -7,12 +7,12 @@ import useUser from '../features/authentication/useUser'
 function Header({onOpen}) {
   const {isLoading} = useUser()
   return (
-    <div className='bg-secondary-0 py-4 px-8 border-b border-secondary-200 col-span-2 md:col-span-1'>
-        <div className='container xl:max-w-screen-lg flex justify-between'>
+    <div className='bg-secondary-0 py-4 px-8 border-b border-secondary-200 col-span-2 lg:col-span-1'>
+        <div className='container max-w-screen-lg flex justify-between'>
             <div>
               <button
                   onClick={onOpen} 
-                  className='md:hidden size-7'>
+                  className='lg:hidden size-7'>
                   <HiMenuAlt3 className='size-full text-secondary-900'/>
               </button>
             </div>

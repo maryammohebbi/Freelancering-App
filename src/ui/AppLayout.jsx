@@ -10,7 +10,7 @@ function AppLayout({children, onOpen}) {
         {/* <Sidebar/> */}
         {children}
 
-        <div className='bg-secondary-100 overflow-y-auto p-8 col-span-2 md:col-span-1'>
+        <div className='bg-secondary-100 overflow-y-auto p-8 col-span-2 lg:col-span-1'>
             <div className="mx-auto max-w-screen-lg flex flex-col gap-y-12">
                 <Outlet/>
             </div>
