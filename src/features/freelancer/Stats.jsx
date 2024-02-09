@@ -23,7 +23,7 @@ function Stats({proposals}) {
             value={acceptedProposals.length}
             icon={<ImCheckboxChecked className='size-20'/>}
             color="green"
-            />
+        />
         <Stat
             title="کیف پول"
             value={toPersianNumbersWithComma(balance)}
