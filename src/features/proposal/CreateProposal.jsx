@@ -15,7 +15,6 @@ function CreateProposal({onClose, projectId}) {
                 onClose()
             }}
             )
-
     }
   return (
     <form className='space-y-4' onSubmit={handleSubmit(onSubmit)}>
