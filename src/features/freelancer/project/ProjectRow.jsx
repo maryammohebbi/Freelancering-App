@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { toPersianNumbers, toPersianNumbersWithComma } from '../../../utils/toPersianNumber'
 import Table from '../../../ui/Table'
 import truncateText from '../../../utils/truncateText'
 import toLocalDateShort from '../../../utils/toLocalDateShort'
 import {MdAssignmentAdd}  from "react-icons/md"
+import Modal from '../../../ui/Modal'
+import CreateProposal from '../../proposal/CreateProposal'
 
 const projectStatus = {
     OPEN: {
@@ -17,6 +19,7 @@ const projectStatus = {
 }
 
 function ProjectRow({project, index}) {
+    const [open, setOpen] = useState(false)
     const {title, budget, deadline, status} = project
   return (
     <Table.Row>
@@ -30,9 +33,14 @@ function ProjectRow({project, index}) {
             </span>
         </td>
         <td>
-            <button>
-                <MdAssignmentAdd className="size-5 text-primary-900"/>
-            </button>
+            <>
+                <button onClick={()=> setOpen(true)}>
+                    <MdAssignmentAdd className="size-5 text-primary-900"/>
+                </button>
+                <Modal onClose={()=> setOpen(false)} open={open} title={`ثبت پروپوزال برای "${title}"`}>
+                    <CreateProposal onClose={()=> setOpen(false)} projectId={project._id}/>
+                </Modal>
+            </>
         </td>
     </Table.Row>
   )
