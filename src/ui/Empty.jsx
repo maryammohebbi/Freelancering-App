@@ -2,8 +2,8 @@ import React from 'react'
 
 function Empty({resourceName}) {
   return (
-    <div>
-        هنوز {resourceName}ای موجود نیست 
+    <div className='text-secondary-800'>
+        هنوز {resourceName} ای موجود نیست 
     </div>
   )
 }
