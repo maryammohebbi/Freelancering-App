@@ -15,6 +15,7 @@ import FreelancerDashboard from "./pages/FreelancerDashboard"
 import Proposals from "./pages/Proposals"
 import SubmittedProjects from "./pages/SubmittedProjects"
 import ProtectRoute from "./ui/ProtectRoute"
+import NotAccess from "./pages/NotAccess"
 
 const queryClient = new QueryClient()
 
@@ -54,6 +55,7 @@ function App() {
 
             <Route path="/" element={<Home/>} />
             <Route path="*" element={<NotFound/>}/>
+            <Route path="/not-access" element={<NotAccess/>}/>
           </Routes>
       </QueryClientProvider>
     </DarkModeProvider>
