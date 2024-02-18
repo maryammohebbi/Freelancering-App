@@ -5,7 +5,7 @@ import MobileSidebar from '../../ui/MobileSidebar'
 import AdminSideMenu from './AdminSideMenu'
 
 function AdminLayout() {
-    const {adminMenuOpen, setAdminMenuOpen} = useState(false)
+    const [adminMenuOpen, setAdminMenuOpen] = useState(false)
   return (
     <AppLayout onOpen={()=> setAdminMenuOpen(true)}>
 
