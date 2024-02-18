@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 function AuthContainer() {
     const [step, setStep] = useState(2)
     // const [phoneNumber, setPhoneNumber] = useState("09334089892")
-    const {register, handleSubmit, getValues} = useForm({defaultValues: { phoneNumber: "09227323927"}})
+    const {register, handleSubmit, getValues} = useForm({defaultValues: { phoneNumber: "09123456789"}})
 
     const {isPending: isSendingOtp, mutateAsync, data: otpResponse} = useMutation({
         mutationFn: getOtp

@@ -16,6 +16,10 @@ import Proposals from "./pages/Proposals"
 import SubmittedProjects from "./pages/SubmittedProjects"
 import ProtectRoute from "./ui/ProtectRoute"
 import NotAccess from "./pages/NotAccess"
+import AdminLayout from "./features/admin/AdminLayout"
+import Categories from "./pages/Categories"
+import Users from "./pages/Users"
+import AdminDashboard from "./pages/AdminDashboard"
 
 const queryClient = new QueryClient()
 
@@ -51,6 +55,20 @@ function App() {
               <Route path="dashboard" element={<FreelancerDashboard/>}/>
               <Route path="proposals" element={<Proposals/>}/>
               <Route path="projects" element={<SubmittedProjects/>}/>
+            </Route>
+            <Route path="/admin" 
+              element={
+                <ProtectRoute>
+                  <AdminLayout/>
+                </ProtectRoute>
+              }
+            >
+              <Route index element={<Navigate to="dashboard" replace/>}/>
+              <Route path="dashboard" element={<AdminDashboard/>}/>
+              <Route path="proposals" element={<Proposals/>}/> 
+              <Route path="projects" element={<SubmittedProjects/>}/>
+              <Route path="categories" element={<Categories/>}/>
+              <Route path="users" element={<Users/>}/>
             </Route>
 
             <Route path="/" element={<Home/>} />
