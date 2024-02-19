@@ -7,8 +7,12 @@ export default function useAuthorize (){
 
     let isAuthenticate = false
     if(user) isAuthenticate = true
+
+    let isVerified = false
+    if(user && user.status === 2) isVerified = true
     
     let isAuthorized = false
+
 
     // if(pathname.includes("owner")){
     //     if(user && user.role === "OWNER") isAuthorized = true
@@ -35,5 +39,5 @@ export default function useAuthorize (){
         if(user && user.role === ROLES[desiredRole]) isAuthorized = true
     }
 
-    return {isLoading, isAuthenticate, isAuthorized}
+    return {isLoading, isAuthenticate, isAuthorized, isVerified}
 }
