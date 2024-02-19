@@ -50,14 +50,14 @@ function ChangeProposalStatus({proposalId, onClose}) {
             required
         />
         <div className="!mt-8">
-                {
-                    isUpdating ? (<Loading/>) : (
-                        <button className='btn btn--primary w-full'>
-                            تایید
-                        </button>
-                    )
-                }
-            </div>
+            {
+                isUpdating ? (<Loading/>) : (
+                    <button className='btn btn--primary w-full'>
+                        تایید
+                    </button>
+                )
+            }
+        </div>
     </form>
   )
 }
