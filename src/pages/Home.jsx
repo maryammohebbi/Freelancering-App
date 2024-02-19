@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '../ui/Header'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div className='h-screen bg-secondary-0'>
+      <Header/>
+    </div>
   )
 }
 
