@@ -3,6 +3,7 @@ import Table from '../../../ui/Table'
 import { GiToggles } from "react-icons/gi"
 import Modal from '../../../ui/Modal'
 import ChangeUserStatus from './ChangeUserStatus'
+import { Button, Tooltip } from '@mui/material'
 
 const statusStyle = [
     {
@@ -22,7 +23,6 @@ const statusStyle = [
 
 function UserRow({user, index}) {
     const {name, email, phoneNumber, role, status} = user
-    // const [mouseOver, setMouseOver] = useState(false)
     const [open, setOpen] = useState(false)
     
   return (
@@ -41,15 +41,11 @@ function UserRow({user, index}) {
         </td>
         <td>
             <div className='relative'>
-                <button onClick={()=>setOpen(true)}>
-                    <GiToggles className='size-6'/>
-                    {/* <span 
-                        className="text-secondary-700 text-xs bg-secondary-50 absolute 
-                        -top-full -left-0 opacity-0 transition-opacity duration-300 hover:top-0 hover:left-0 hoveropacity-100"
-                    >
-                        تغییر وضعیت کاربر
-                    </span> */}
-                </button>
+                <Tooltip title="تغییر وضعیت" arrow placement='top'>
+                    <Button onClick={()=>setOpen(true)}>
+                        <GiToggles className='size-6 text-secondary-700'/>
+                    </Button>
+                </Tooltip>
                 <Modal title="تغییر وضعیت کاربر" open={open} onClose={()=>setOpen(false)}>
                     <ChangeUserStatus onClose={()=> setOpen(false)} userId={user._id}/>
                 </Modal>
