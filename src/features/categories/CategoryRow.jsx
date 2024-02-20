@@ -5,10 +5,13 @@ import { CiEdit, CiTrash } from 'react-icons/ci'
 import { toPersianNumbers } from '../../utils/toPersianNumber'
 import truncateText from '../../utils/truncateText'
 import Modal from '../../ui/Modal'
+import ConfirmDelete from '../../ui/ConfirmDelete'
+import useRemoveCategory from './useRemoveCategory'
 
 function CategoryRow({category, index}) {
     const [openEditCat, setOpenEditCat] =  useState(false)
     const [openDeleteCat, setOpenDeleteCat] = useState(false)
+    const {deleteCategory, isDeleting} = useRemoveCategory()
     return (
         <Table.Row >
             <td>{toPersianNumbers(index + 1)}</td>
@@ -35,7 +38,14 @@ function CategoryRow({category, index}) {
                             </button>
                         </Tooltip>
                         <Modal title={`حذف دسته بندی "${category.title}"`} open={openDeleteCat} onClose={()=>setOpenDeleteCat(false)}>
-
+                            <ConfirmDelete 
+                                onConfirm={()=> deleteCategory(category._id, {
+                                    onSuccess: ()=> setOpenDeleteCat(false)
+                                })}
+                                resourceName={category.title} 
+                                onClose={()=> setOpenDeleteCat(false)} 
+                                disabled={false}
+                            />
                         </Modal>
                     </>
                 </div>
