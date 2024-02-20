@@ -18,6 +18,7 @@ function CategoryTable() {
             <th>عنوان</th>
             <th>عنوان انگلیسی</th>
             <th>توضیحات</th>
+            <th>نوع</th>
             <th>عملیات</th>
         </Table.Header>
         <Table.Body>

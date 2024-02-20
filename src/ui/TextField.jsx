@@ -3,7 +3,7 @@ import React from 'react'
 function TextField({label, name, register, required, type="text", validationSchema, errors, value, onChange}) {
   return (
     <div>
-        <label className='mb-2 block' htmlFor={name}>
+        <label className='mb-2 block text-secondary-700' htmlFor={name}>
             {label} {required && <span className='text-error'>*</span>}
         </label>
         <input 

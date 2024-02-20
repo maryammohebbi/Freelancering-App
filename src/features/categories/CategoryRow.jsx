@@ -1,15 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table from '../../ui/Table'
+import { Tooltip } from '@mui/material'
+import { CiEdit, CiTrash } from 'react-icons/ci'
+import { toPersianNumbers } from '../../utils/toPersianNumber'
+import truncateText from '../../utils/truncateText'
+import Modal from '../../ui/Modal'
 
 function CategoryRow({category, index}) {
-  return (
-    <Table.Row >
-        <td>{index + 1}</td>
-        <td>{category.title}</td>
-        <td>{category.englishTitle}</td>
-        <td>{category.description}</td>
-        <td>++</td>
-    </Table.Row>
+    const [openEditCat, setOpenEditCat] =  useState(false)
+    const [openDeleteCat, setOpenDeleteCat] = useState(false)
+    return (
+        <Table.Row >
+            <td>{toPersianNumbers(index + 1)}</td>
+            <td>{truncateText(category.title, 30)}</td>
+            <td>{truncateText(category.englishTitle, 30)}</td>
+            <td>{truncateText(category.description, 40)}</td>
+            <td>{category.type}</td>
+            <td>
+                <div className="flex items-center gap-x-4">
+                    <>
+                        <Tooltip title="ویرایش" arrow placement='top'>
+                            <button onClick={()=>setOpenEditCat(true)}>
+                                <CiEdit className='size-5 text-primary-900'/>
+                            </button>
+                        </Tooltip>
+                        <Modal title={`ویرایش دسته بندی "${category.title}"`} open={openEditCat} onClose={()=> setOpenEditCat(false)}>
+
+                        </Modal>
+                    </>
+                    <>
+                        <Tooltip title="حذف" arrow placement='top'>
+                            <button onClick={()=>setOpenDeleteCat(true)}>
+                                <CiTrash className='size-5 text-red-400'/>
+                            </button>
+                        </Tooltip>
+                        <Modal title={`حذف دسته بندی "${category.title}"`} open={openDeleteCat} onClose={()=>setOpenDeleteCat(false)}>
+
+                        </Modal>
+                    </>
+                </div>
+                
+            </td>
+        </Table.Row>
   )
 }
 
