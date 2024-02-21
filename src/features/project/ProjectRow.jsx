@@ -11,6 +11,7 @@ import CreateProjectForm from './CreateProjectForm'
 import ToggleProjectStatus from './ToggleProjectStatus'
 import { Link } from 'react-router-dom'
 import { HiEye } from 'react-icons/hi'
+import { Tooltip } from '@mui/material'
 
 function ProjectRow({index, project}) {
     const [isDeleteOpen, setIsDeleteOpen] = useState(false)
@@ -43,9 +44,11 @@ function ProjectRow({index, project}) {
             <div className="flex items-center gap-x-4">
 
                 <>
-                    <button onClick={()=> setIsEditOpen(true)}>
-                        <CiEdit className='size-6 text-primary-900'/>
-                    </button>
+                    <Tooltip title="ویرایش" arrow placement='top'>
+                        <button onClick={()=> setIsEditOpen(true)}>
+                            <CiEdit className='size-6 text-primary-900'/>
+                        </button>
+                    </Tooltip>
                     <Modal title={`ویرایش ${project.title}`} onClose={()=>setIsEditOpen(false)} open={isEditOpen}>
                         <CreateProjectForm 
                             onClose={()=> setIsEditOpen(false)} 
@@ -55,9 +58,11 @@ function ProjectRow({index, project}) {
                 </>
 
                 <>
-                    <button onClick={()=> setIsDeleteOpen(true)}>
-                        <CiTrash className='size-6 text-error'/>
-                    </button>
+                    <Tooltip title="حذف" arrow placement='top'>
+                        <button onClick={()=> setIsDeleteOpen(true)}>
+                            <CiTrash className='size-6 text-error'/>
+                        </button>
+                    </Tooltip>
                     <Modal title={` حذف ${project.title}`} onClose={()=> setIsDeleteOpen(false)} open={isDeleteOpen}>
                         <ConfirmDelete 
                             resourceName={project.title} 
@@ -73,9 +78,11 @@ function ProjectRow({index, project}) {
             </div>
         </td>
         <td>
-            <Link to={project._id} className='flex justify-center'>
-                <HiEye className='size-5 text-primary-800'/>
-            </Link>
+            <Tooltip title="دیدن درخواست ها" arrow placement='top'>
+                <Link to={project._id} className='flex justify-center'>
+                    <HiEye className='size-5 text-primary-800'/>
+                </Link>
+            </Tooltip>
         </td>
     </Table.Row>
   )

@@ -4,6 +4,7 @@ import truncateText from '../../utils/truncateText'
 import Modal from '../../ui/Modal'
 import ChangeProposalStatus from './ChangeProposalStatus'
 import { FaToggleOff } from "react-icons/fa6"
+import { Tooltip } from '@mui/material'
 
 const statusStyle = [
     {
@@ -43,13 +44,14 @@ function ProposalRow({proposal, index}) {
             >
                 <ChangeProposalStatus proposalId={proposal._id} onClose={()=> setOpen(false)}/>
             </Modal>
-            <button 
-                onClick={()=> setOpen(true)}
-                className='flex gap-x-2 items-center bg-secondary-100 rounded-lg p-1'
+            <Tooltip title="تغییر وضعیت درخواست" arrow placement='top'>
+                <button 
+                    onClick={()=> setOpen(true)}
+                    className='flex gap-x-2 items-center rounded-lg p-1'
                 >
-                <span className='text-secondary-800'>تغییر وضعیت</span>
-                <FaToggleOff className='text-primary-900 size-6'/>
-            </button>
+                    <FaToggleOff className='text-primary-900 size-7'/>
+                </button>
+            </Tooltip>
         </td>
 
     </Table.Row>

@@ -22,7 +22,7 @@ function ProjectsTable() {
             <th>ددلاین</th>
             <th>تگ ها</th>
             <th>فریلنسر</th>
-            <th>وضعیت</th>
+            <th className='flex justify-center'>وضعیت</th>
             <th>عملیات</th>
             <th>درخواست ها</th>
         </Table.Header>

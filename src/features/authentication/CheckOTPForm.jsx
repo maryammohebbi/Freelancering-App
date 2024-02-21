@@ -87,7 +87,7 @@ function CheckOTPForm({phoneNumber, onBack, onResendOtp, otpResponse}) {
             }
         </form>
         { time > 0 ? (
-            <p className='flex justify-center'> {time} ثانیه تا ارسال مجدد کد </p>
+            <p className='flex justify-center text-secondary-700'> {time} ثانیه تا ارسال مجدد کد </p>
             ) : (
             <button onClick={onResendOtp} className='flex gap-x-2 items-center mx-auto'>
                 <span>ارسال مجدد کد</span>

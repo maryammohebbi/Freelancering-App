@@ -6,6 +6,7 @@ import toLocalDateShort from '../../../utils/toLocalDateShort'
 import {MdAssignmentAdd}  from "react-icons/md"
 import Modal from '../../../ui/Modal'
 import CreateProposal from '../../proposal/CreateProposal'
+import { Tooltip } from '@mui/material'
 
 const projectStatus = {
     OPEN: {
@@ -34,9 +35,13 @@ function ProjectRow({project, index}) {
         </td>
         <td>
             <>
-                <button onClick={()=> setOpen(true)}>
-                    <MdAssignmentAdd className="size-5 text-primary-900"/>
-                </button>
+                <Tooltip title="تغییر وضعیت پروژه" arrow placement='top'>
+                    <button onClick={()=> setOpen(true)}>
+                        <MdAssignmentAdd className="size-5 text-primary-900"/>
+                    </button>
+                </Tooltip>
+                    
+                
                 <Modal onClose={()=> setOpen(false)} open={open} title={`ثبت پروپوزال برای "${title}"`}>
                     <CreateProposal onClose={()=> setOpen(false)} projectId={project._id}/>
                 </Modal>

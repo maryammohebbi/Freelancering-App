@@ -43,7 +43,7 @@ function UserRow({user, index}) {
             <div className='relative'>
                 <Tooltip title="تغییر وضعیت" arrow placement='top'>
                     <Button onClick={()=>setOpen(true)}>
-                        <GiToggles className='size-6 text-secondary-700'/>
+                        <GiToggles className='size-6 text-primary-900'/>
                     </Button>
                 </Tooltip>
                 <Modal title="تغییر وضعیت کاربر" open={open} onClose={()=>setOpen(false)}>
