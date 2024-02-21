@@ -4,15 +4,69 @@ import { useForm } from 'react-hook-form'
 import TextField from '../../ui/TextField'
 import useCreateCategory from './useCreateCategory'
 import Loading from '../../ui/Loading'
+import useEditCategory from './useEditCategory'
+import RHFSelect from '../../ui/RHFSelect'
 
-function CreateCategory({onClose}) {
-    const {register, formState: {errors}, handleSubmit} = useForm()
+const typeOptions = [
+    {
+        label: "Project",
+        value: "project"
+    },
+    {
+        label: "Post",
+        value: "post"
+    },
+    
+    {
+        label: "Comment",
+        value: "comment"
+    },
+    {
+        label: "Ticket",
+        value: "ticket"
+    },
+]
+
+function CreateCategory({onClose, categoryToEdit={}}) {
+    const {_id: editId} = categoryToEdit
+    const isEditSession = editId
+
+    const {title, description, englishTitle, type} = categoryToEdit
+    let editValues = {}
+
+    if (isEditSession){
+        editValues = {
+            title,
+            description,
+            englishTitle,
+            type
+            
+        }
+    }
+    
+    const {register, formState: {errors}, handleSubmit, reset} = useForm({defaultValues: editValues})
     const {isCreating, createCategory} = useCreateCategory()
+    const {editCategory} = useEditCategory()
 
     const onSubmit = (data)=> {
-        createCategory({...data, type:"project"}, {
-            onSuccess: ()=> onClose()
-        })
+        const newCategory = {
+            ...data
+        }
+        if(isEditSession){
+            editCategory({id: editId, newCategory},
+                {onSuccess: ()=>{
+                    onClose()
+                    reset()
+
+                }})
+        }else {
+            createCategory({...newCategory}, {
+                onSuccess: ()=> {
+                    onClose()
+                    reset()
+                }
+            })
+        }
     }
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-2'>
@@ -61,21 +115,15 @@ function CreateCategory({onClose}) {
              }}
              errors={errors}
         />
-        {/* <TextField
-            label="نوع دسته بندی"
+
+        <RHFSelect
+            label= "نوع دسته بندی"
             name= "type"
-            required
             register={register}
-            validationSchema={{
-                required: "نوع دسته بندی ضروری است",
-                minLength: {
-                 value: 5,
-                 message: "طول نوع دسته بندی باید حداقل 5 کاراکتر باشد"
- 
-                }
-             }}
-             errors={errors}
-        /> */}
+            required
+            options={typeOptions}
+        />
+
         <div className="!mt-8">
             {isCreating ? <Loading/> : <button className='btn btn--primary w-full'>تایید</button>}
         </div>

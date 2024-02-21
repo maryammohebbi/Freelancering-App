@@ -7,6 +7,7 @@ import truncateText from '../../utils/truncateText'
 import Modal from '../../ui/Modal'
 import ConfirmDelete from '../../ui/ConfirmDelete'
 import useRemoveCategory from './useRemoveCategory'
+import CreateCategory from './CreateCategory'
 
 function CategoryRow({category, index}) {
     const [openEditCat, setOpenEditCat] =  useState(false)
@@ -28,7 +29,7 @@ function CategoryRow({category, index}) {
                             </button>
                         </Tooltip>
                         <Modal title={`ویرایش دسته بندی "${category.title}"`} open={openEditCat} onClose={()=> setOpenEditCat(false)}>
-
+                            <CreateCategory onClose={()=> setOpenEditCat(false)} categoryToEdit={category}/>
                         </Modal>
                     </>
                     <>
