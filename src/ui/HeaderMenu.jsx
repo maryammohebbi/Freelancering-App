@@ -1,5 +1,5 @@
 import React from 'react'
-import { HiOutlineUser } from 'react-icons/hi'
+import { HiHome, HiOutlineUser } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
 import DarkModeToggle from './DarkModeToggle'
 import LogOut from '../features/authentication/LogOut'
@@ -14,6 +14,11 @@ function HeaderMenu() {
         </li>
         <li className='flex'>
             <DarkModeToggle/>
+        </li>
+        <li className='flex'>
+            <Link to="/">
+                <HiHome className='size-5 text-primary-900'/>
+            </Link>
         </li>
         <li className='flex'>
             <LogOut/>
