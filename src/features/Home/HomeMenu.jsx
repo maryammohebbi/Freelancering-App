@@ -7,7 +7,6 @@ import UserAvatar from '../authentication/UserAvatar'
 import LogOut from '../authentication/LogOut'
 
 function HomeMenu({user}) {
-    // console.log(user)
   return (
     <ul className='flex flex-col gap-y-4 lg:flex-row lg:gap-x-4 items-center'>
                     
