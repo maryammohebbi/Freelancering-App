@@ -30,7 +30,7 @@ function TableBody({children}){
 
 function TableRow({children}){
     return(
-        <tr>{children}</tr>
+        <tr className='hover:shadow-xl transition-all duration-300'>{children}</tr>
     )
 }
 
