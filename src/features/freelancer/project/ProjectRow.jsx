@@ -35,7 +35,7 @@ function ProjectRow({project, index}) {
         </td>
         <td>
             <>
-                <Tooltip title="تغییر وضعیت پروژه" arrow placement='top'>
+                <Tooltip title="ثبت پروپوزال" arrow placement='top'>
                     <button onClick={()=> setOpen(true)}>
                         <MdAssignmentAdd className="size-5 text-primary-900"/>
                     </button>

@@ -20,9 +20,11 @@ function HeaderMenu() {
             <DarkModeToggle/>
         </li>
         <li className='flex'>
-            <Link to="/">
-                <HiHome className='size-5 text-primary-900'/>
-            </Link>
+            <Tooltip title="خانه" arrow>
+                <Link to="/">
+                    <HiHome className='size-5 text-primary-900'/>
+                </Link>
+            </Tooltip>
         </li>
         <li className='flex'>
             <LogOut/>

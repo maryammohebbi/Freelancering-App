@@ -10,10 +10,10 @@ function DarkModeToggle() {
     <Tooltip title="تغییر تم" arrow>
       <button onClick={toggleDarkMode}>
           {isDarkMode ? (
-              <HiOutlineMoon className='size-5 text-primary-900'/>
-              ) : (
-              <HiOutlineSun className='size-5 text-primary-900'/>
-          )}
+            <HiOutlineSun className='size-5 text-primary-900'/>
+            ) : (
+            <HiOutlineMoon className='size-5 text-primary-900'/>
+            )}
       </button>
     </Tooltip>
   )
