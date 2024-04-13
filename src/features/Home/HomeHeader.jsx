@@ -9,7 +9,7 @@ function HomeHeader() {
     const [open, setOpen] = useState(false)
   return (
     <div>
-        <div className='bg-secondary-0 py-4 px-8 border-b border-secondary-200'>
+        <div className='py-4 px-8 border-b border-secondary-200'>
             <div className='container max-w-screen-lg flex justify-between'>
                 <div>
                     <button

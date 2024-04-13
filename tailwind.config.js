@@ -54,6 +54,9 @@ export default {
       fontFamily: {
         sans: ["Vazir", ...fontFamily.sans],
       },
+      backgroundImage: (theme) => ({
+        'landing-bg': `url('../public/bghome.jpg')`, // Replace with your image path
+      }),
     },
   },
   plugins: [
