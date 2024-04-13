@@ -31,7 +31,7 @@ function HomeMenu({user}) {
                     </li>
                 </>
             ) : (
-                <Link to="/auth" className='text-secondary-800' >ورود | ثبت نام</Link>
+                <Link to="/auth" className='text-gray-400' >ورود | ثبت نام</Link>
             )
         }
     </ul>

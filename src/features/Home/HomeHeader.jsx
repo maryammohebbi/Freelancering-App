@@ -9,14 +9,14 @@ function HomeHeader() {
     const [open, setOpen] = useState(false)
   return (
     <div>
-        <div className='py-4 px-8 border-b border-secondary-200'>
+        <div className='py-4 px-8 border-b border-gray-300'>
             <div className='container max-w-screen-lg flex justify-between'>
                 <div>
                     <button
                         onClick={()=>setOpen(true)} 
                         className='lg:hidden size-7'
                     >                   
-                        <HiMenuAlt3 className='size-full text-secondary-900'/>
+                        <HiMenuAlt3 className='size-full text-gray-300'/>
                     </button>
                 </div>
                 <div className={`hidden lg:flex items-center gap-x-8 ${isLoading && "blur-sm opacity-50"}`}>
