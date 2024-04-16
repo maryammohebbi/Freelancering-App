@@ -7,7 +7,7 @@ function MobileSidebar({children, menuOpen, setMenuOpen, onClose, open}) {
   return (
     <div className={`${ open ? 'translate-x-0' : 'translate-x-full' } 
         bg-secondary-0 absolute w-[15rem] h-screen top-0 p-6 flex-col border-l border-gray-300 rounded-tl-3xl 
-        transition-transform duration-300 transform`}
+        transition-transform duration-300 transform z-50`}
     >
         <div className='flex justify-end'>
             <button
